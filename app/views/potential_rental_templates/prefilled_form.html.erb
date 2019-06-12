@@ -1,0 +1,66 @@
+<h1>
+  Edit potential rental #<%= @potential_rental.id %>
+</h1>
+
+<hr>
+
+<%= render("potential_rental_templates/validation_failures.html.erb") %>
+
+<form action="/update_potential_rental_record/<%= @potential_rental.id %>" method="post">
+  <div>
+    <label for="warehouse_id">
+      </label>
+
+    <input type="hidden" id="warehouse_id" name="warehouse_id" value="<%= @potential_rental.warehouse_id %>">
+  </div>
+
+  <div>
+    <label for="ask_price">
+      Ask price (per sqft)
+    </label>
+
+    <input type="integer" id="ask_price" name="ask_price" value="<%= @potential_rental.ask_price %>">
+  </div>
+
+  <div>
+    <label for="user_id">
+    </label>
+
+    <input type="hidden" id="user_id" name="user_id" value="<%= @potential_rental.user_id %>">
+  </div>
+
+  <div>
+    <label for="length_sqft">
+      Length sqft
+    </label>
+
+    <input type="integer" id="length_sqft" name="length_sqft" value="<%= @potential_rental.length_sqft %>">
+  </div>
+
+  <div>
+    <label for="width_sqft">
+      Width sqft
+    </label>
+
+    <input type="integer" id="width_sqft" name="width_sqft" value="<%= @potential_rental.width_sqft %>">
+  </div>
+
+<div>
+    <label for="days">
+      Days Available
+    </label>
+
+    <input type="integer" id="days" name="days" value="<%= @potential_rental.days %>">
+  </div>
+
+
+  <button>
+    Update potential rental
+  </button>
+</form>
+
+<hr>
+
+<a href="/">
+  Go back
+</a>

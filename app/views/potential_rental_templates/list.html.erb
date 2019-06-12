@@ -1,0 +1,123 @@
+<h1>
+  Potential rental list
+</h1>
+
+
+<%= search_form_for @q do |f| %>
+  <p class="lead">Narrow results:</p>
+
+  <div class="form-group">
+    <%= f.label :ask_price, "Price per sqft less than" %>
+    <%= f.text_field:ask_price_lteq, :class => "form-control", :placeholder => "e.g. 25" %>
+  </div>
+  
+ <div class="form-group">
+    <%= f.label :length_sqft, "Minimum Length (ft) needed" %>
+    <%= f.text_field :length_sqft_gteq, :class => "form-control", :placeholder => "e.g. 45" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :width_sqft, "Minimum Width (ft) needed" %>
+    <%= f.text_field :width_sqft_gteq, :class => "form-control", :placeholder => "e.g. 45" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :days, "Minimum rental days needed" %>
+    <%= f.text_field:days_gteq, :class => "form-control", :placeholder => "e.g. 10" %>
+  </div>
+
+
+
+  <%= f.submit :class => "btn btn-primary btn-block" %>
+  
+  <a href="/potential_rentals" class="btn btn-default btn-block">Clear filters</a>
+<% end %>
+
+
+
+
+<hr>
+
+<table>
+  <tr>
+
+    <th>
+      Warehouse
+    </th>
+
+    <th>
+      Ask price (per sqft)
+    </th>
+
+    <th>
+      User
+    </th>
+
+    <th>
+      Length (ft)
+    </th>
+
+    <th>
+      Width (ft)
+    </th>
+  
+    <th>
+      Days Available
+    </th>
+  
+  </tr>
+
+  <% @potential_rentals.each do |potential_rental| %>
+  <tr>
+    
+    <% if Contract.exists?(potential_rental_id: potential_rental.id) == false %>
+    
+    
+    
+    <td>
+      <%= potential_rental.warehouse.name %>
+    </td>
+
+    <td>
+      <%= number_to_currency(potential_rental.ask_price) %>
+    </td>
+
+    <td>
+      <%= potential_rental.owner.username %>
+    </td>
+
+    <td>
+      <%= potential_rental.length_sqft %>
+    </td>
+
+    <td>
+      <%= potential_rental.width_sqft %>
+    </td>
+
+    <td>
+      <%= potential_rental.days %>
+    </td>
+
+
+    
+    <td>
+    <form action="/rent_space" method = "post">
+      <input type="hidden" value="<%= potential_rental.id %>" name="potential_rental_id">
+
+      <button>Rent Storage</button>
+    </form>
+  </td>
+    
+    
+    <td>
+      <a href="/potential_rentals/<%= potential_rental.id %>">
+        Show details
+      </a>
+    </td>
+    
+    
+  </tr>
+  
+  <% end %>
+  <% end %>
+</table>

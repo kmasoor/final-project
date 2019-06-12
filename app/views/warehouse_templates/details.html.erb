@@ -1,0 +1,82 @@
+<h1>
+  Warehouse #<%= @warehouse.id %> details
+</h1>
+
+<div>
+  <div>
+    <a href="/">
+      Go back
+    </a>
+  </div>
+
+
+
+  <% if @warehouse.owner_id == current_user.id %>
+        <div>
+          <a href="/existing_warehouse_form/<%= @warehouse.id %>">
+          Edit warehouse
+          </a>
+        </div>
+
+        <div>
+          <a href="/delete_warehouse/<%= @warehouse.id %>">
+          Delete warehouse
+      </a>
+        </div>
+    
+  <% end %>
+
+</div>
+
+<dl>
+
+  <dt>
+    Address
+  </dt>
+  <dd>
+    <%= @warehouse.location %>
+  </dd>
+
+  <dt>
+    Neighborhood
+  </dt>
+  <dd>
+    <%= @warehouse.neighborhood %>
+  </dd>
+
+  <dt>
+    Max length (ft)
+  </dt>
+  <dd>
+    <%= @warehouse.max_length_sqft %>
+  </dd>
+
+  <dt>
+    Max width (ft)
+  </dt>
+  <dd>
+    <%= @warehouse.max_width_sqft %>
+  </dd>
+
+  <dt>
+    Name
+  </dt>
+  <dd>
+    <%= @warehouse.name %>
+  </dd>
+
+  <dt>
+    Created at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@warehouse.created_at) %> ago
+  </dd>
+
+  <dt>
+    Updated at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@warehouse.updated_at) %> ago
+  </dd>
+</dl>
+

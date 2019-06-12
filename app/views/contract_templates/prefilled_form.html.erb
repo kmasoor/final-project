@@ -1,0 +1,64 @@
+<h1>
+  Edit contract #<%= @contract.id %>
+</h1>
+
+<hr>
+
+<%= render("contract_templates/validation_failures.html.erb") %>
+
+<form action="/update_contract_record/<%= @contract.id %>" method="post">
+
+  
+  <input type="hidden" name="buyer_id" value="<%= current_user.id %>">
+
+
+
+  <div>
+
+
+    <input type="hidden" id="seller_id" name="seller_id" value="<%= @contract.seller_id %>">
+  </div>
+
+  <div>
+    <label for="price">
+      Price
+    </label>
+
+    <input type="text" id="price" name="price" value="<%= @contract.price %>">
+  </div>
+
+  <div>
+    <label for="days">
+      Days
+    </label>
+
+    <input type="text" id="days" name="days" value="<%= @contract.days %>">
+  </div>
+
+  <div>
+    <label for="length_used">
+      Length used (ft)
+    </label>
+
+    <input type="text" id="length_used" name="length_used" value="<%= @contract.length_sqft %>">
+  </div>
+
+  <div>
+    <label for="width_used">
+      Width used (ft)
+    </label>
+
+    <input type="text" id="width_used" name="width_used" value="<%= @contract.width_sqft %>">
+  </div>
+
+
+  <button>
+    Update contract
+  </button>
+</form>
+
+<hr>
+
+<a href="/contracts">
+  Go back
+</a>

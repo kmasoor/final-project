@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180221161615) do
+ActiveRecord::Schema.define(version: 20190606204837) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -41,6 +41,53 @@ ActiveRecord::Schema.define(version: 20180221161615) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_admin_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+  end
+
+  create_table "contracts", force: :cascade do |t|
+    t.integer "buyer_id"
+    t.integer "seller_id"
+    t.string "price"
+    t.string "days"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "length_sqft"
+    t.integer "width_sqft"
+    t.integer "potential_rental_id"
+  end
+
+  create_table "potential_rentals", force: :cascade do |t|
+    t.integer "warehouse_id"
+    t.integer "ask_price"
+    t.integer "user_id"
+    t.integer "length_sqft"
+    t.integer "width_sqft"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "days"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.string "username"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "warehouses", force: :cascade do |t|
+    t.integer "owner_id"
+    t.string "location"
+    t.string "neighborhood"
+    t.integer "max_length_sqft"
+    t.integer "max_width_sqft"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

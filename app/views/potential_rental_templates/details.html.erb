@@ -1,0 +1,66 @@
+<h1>
+  Potential rental #<%= @potential_rental.id %> details
+</h1>
+
+<div>
+  <div>
+    <a href="/">
+      Go back
+    </a>
+  </div>
+
+
+  <% if @potential_rental.user_id == current_user.id %>
+        <div>
+          <a href="/existing_potential_rental_form/<%= @potential_rental.id %>">  Edit potential rental
+          </a>
+        </div>
+
+        <div>
+          <a href="/delete_potential_rental/<%= @potential_rental.id %>">
+          Delete potential rental
+          </a>
+        </div>
+    
+  <% end %>
+
+
+<dl>
+  <dt>
+    Warehouse
+  </dt>
+  <dd>
+    <%= @potential_rental.warehouse.name %>
+  </dd>
+
+  <dt>
+    Ask price (per sqft)
+  </dt>
+  <dd>
+    <%= number_to_currency(@potential_rental.ask_price) %>
+  </dd>
+
+  <dt>
+    Length (ft)
+  </dt>
+  <dd>
+    <%= @potential_rental.length_sqft %>
+  </dd>
+
+  <dt>
+    Width (ft)
+  </dt>
+  <dd>
+    <%= @potential_rental.width_sqft %>
+  </dd>
+
+<dt>
+    Days Available
+  </dt>
+  <dd>
+    <%= @potential_rental.days %>
+  </dd>
+
+
+</dl>
+

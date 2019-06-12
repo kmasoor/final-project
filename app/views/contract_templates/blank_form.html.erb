@@ -1,0 +1,59 @@
+<h1>
+  Add a new contract
+</h1>
+
+<hr>
+
+<%= render("contract_templates/validation_failures.html.erb") %>
+
+<form action="/insert_contract_record" method="post">
+  <div>
+    <label for="buyer_id">
+      Buyer
+    </label>
+
+    <input type="text" id="buyer_id" name="buyer_id" value="<%= @contract.buyer_id %>">
+  </div>
+
+  <div>
+    <label for="seller_id">
+      Seller
+    </label>
+
+    <input type="text" id="seller_id" name="seller_id" value="<%= @contract.seller_id %>">
+  </div>
+
+  <div>
+    <label for="price">
+      Price
+    </label>
+
+    <input type="text" id="price" name="price" value="<%= @contract.price %>">
+  </div>
+
+  <div>
+    <label for="days">
+      Days
+    </label>
+
+    <input type="text" id="days" name="days" value="<%= @contract.days %>">
+  </div>
+
+  <div>
+    <label for="sqft_used">
+      Sqft used
+    </label>
+
+    <input type="text" id="sqft_used" name="sqft_used" value="<%= @contract.sqft_used %>">
+  </div>
+
+  <button>
+    Create contract
+  </button>
+</form>
+
+<hr>
+
+<a href="/contracts">
+  Go back
+</a>

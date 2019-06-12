@@ -1,0 +1,186 @@
+<h1>My Warehouses</h1>
+
+<hr>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Address</th>
+    <th>Neighborhood</th>
+
+
+    <th>
+      Max Length (ft)
+    </th>
+
+    <th>
+      Max Width (ft)
+    </th>
+    
+    
+  </tr>
+
+  <% @warehouses.where(:owner_id => current_user.id).each do |warehouse| %>
+  <tr>
+
+    <td>
+      <%= warehouse.name %>
+    </td>
+
+    <td>
+      <%= warehouse.location %>
+    </td>
+
+    <td>
+      <%= warehouse.neighborhood %>
+    </td>
+
+    <td>
+      <%= warehouse.max_length_sqft %>
+    </td>
+
+    <td>
+      <%= warehouse.max_width_sqft %>
+    </td>
+
+
+    <td>
+      <a href="/warehouses/<%= warehouse.id %>">
+        Show details
+      </a>
+    </td>
+  </tr>
+  <% end %>
+</table>
+
+
+<h1>My Listings</h1>
+
+<hr>
+
+<table>
+  <tr>
+    <th>Warehouse</th>
+    <th>Ask Price</th>
+
+    <th>
+      Length (ft)
+    </th>
+
+    <th>
+      Width (ft)
+    </th>
+    
+    
+    <th>
+      Days Available
+    </th>
+    
+  </tr>
+
+  <% @potential_rentals.where(:user_id => current_user.id).each do |listing| %>
+  <tr>
+
+    <td>
+      <%= listing.warehouse.name%>
+    </td>
+
+    <td>
+      <%= number_to_currency(listing.ask_price) %>
+    </td>
+
+    <td>
+      <%= listing.length_sqft %>
+    </td>
+
+    <td>
+      <%= listing.width_sqft %>
+    </td>
+
+
+    <td>
+      <%= listing.days %>
+    </td>
+
+
+    <td>
+      <a href="/potential_rentals/<%= listing.id %>">
+        Show details
+      </a>
+    </td>
+  </tr>
+  <% end %>
+</table>
+
+
+<h1>
+  My Contracts
+</h1>
+
+<hr>
+
+<table>
+  <tr>
+
+    <th>
+      Buyer
+    </th>
+
+    <th>
+      Seller
+    </th>
+
+    <th>
+      Price
+    </th>
+
+    <th>
+      Length (ft)
+    </th>
+
+    <th>
+      Width (ft)
+    </th>
+
+    <th>
+      Days
+    </th>    
+
+  </tr>
+
+  <% @contracts.where(:buyer_id => current_user.id).each do |contract| %>
+  <tr>
+
+    <td>
+      <%= current_user.username %>
+    </td>
+
+    <td>
+      <%= User.where(:id => contract.seller_id).first.username %>
+    </td>
+
+    <td>
+      <%= number_to_currency(contract.price) %>
+    </td>
+
+    <td>
+      <%= contract.length_sqft %>
+    </td>
+
+    <td>
+      <%= contract.width_sqft %>
+    </td>
+
+    <td>
+      <%= contract.days %>
+    </td>
+
+
+    <td>
+      <a href="/contracts/<%= contract.id %>">
+        Show details
+      </a>
+    </td>
+  </tr>
+  <% end %>
+</table>

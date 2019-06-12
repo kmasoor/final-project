@@ -1,0 +1,86 @@
+<h1>
+  Contracts
+</h1>
+
+<hr>
+
+<table>
+  <tr>
+
+    <th>
+      Buyer
+    </th>
+
+    <th>
+      Seller
+    </th>
+
+    <th>
+      Price
+    </th>
+
+    <th>
+      Days
+    </th>
+
+    <th>
+      Length (ft)
+    </th>
+
+    <th>
+      Width (ft)
+    </th>
+    
+    <th>
+      Listing number
+    </th>
+  </tr>
+
+  <% @contracts.each do |contract| %>
+  <tr>
+
+    <td>
+      <%= contract.buyer_id %>
+    </td>
+
+    <td>
+      <%= contract.seller_id %>
+    </td>
+
+    <td>
+      <%= contract.price %>
+    </td>
+
+    <td>
+      <%= contract.days %>
+    </td>
+
+    <td>
+      <%= contract.length_sqft %>
+    </td>
+
+    <td>
+      <%= contract.width_sqft %>
+    </td>
+
+    <td>
+      <%= contract.potential_rental_id %>
+    </td>
+
+    <td>
+      <%= time_ago_in_words(contract.created_at) %> ago
+    </td>
+
+    <td>
+      <%= time_ago_in_words(contract.updated_at) %> ago
+    </td>
+
+
+    <td>
+      <a href="/contracts/<%= contract.id %>">
+        Show details
+      </a>
+    </td>
+  </tr>
+  <% end %>
+</table>

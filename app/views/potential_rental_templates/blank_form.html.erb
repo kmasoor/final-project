@@ -1,0 +1,68 @@
+<h1>
+  Add a new potential rental
+</h1>
+
+<hr>
+
+<%= render("potential_rental_templates/validation_failures.html.erb") %>
+
+<form action="/insert_potential_rental_record" method="post">
+  
+    <label for="warehouse_dropdown">Warehouse</label>
+  <select id="warehouse_dropdown" name="warehouse_id">
+    <% Warehouse.all.where({:owner_id => current_user.id}).each do |warehouse| %>
+      <option value="<%= warehouse.id %>">
+        <%= warehouse.name %>
+      </option>
+    <% end %>
+  </select>
+  
+  
+  <input type="hidden" name="user_id" value="<%= current_user.id %>">
+
+  <div>
+    <label for="ask_price">
+      Ask price (per sqft)
+    </label>
+
+    <input type="text" id="ask_price" name="ask_price" value="<%= @potential_rental.ask_price %>" placeholder = "e.g. 35">
+  </div>
+
+
+  
+  <div>
+    <label for="length_sqft">
+      Length ft
+    </label>
+
+    <input type="text" id="length_sqft" name="length_sqft" value="<%= @potential_rental.length_sqft %>" placeholder = "e.g. 20">
+  </div>
+
+  <div>
+    <label for="width_sqft">
+      Width ft
+    </label>
+
+    <input type="text" id="width_sqft" name="width_sqft" value="<%= @potential_rental.width_sqft %>" placeholder = "e.g. 20">
+  </div>
+
+  <div>
+    <label for="days">
+      Days available
+    </label>
+
+    <input type="text" id="days" name="days" value="<%= @potential_rental.days %>" placeholder = "e.g. 7">
+  </div>
+
+
+
+  <button>
+    Create potential rental
+  </button>
+</form>
+
+<hr>
+
+<a href="/">
+  Go back
+</a>

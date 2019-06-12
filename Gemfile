@@ -8,6 +8,7 @@ end
 gem "activeadmin"
 gem "coffee-rails"
 gem "devise"
+gem 'ransack'
 gem "faker", :git => "https://github.com/stympy/faker.git", :branch => "master"
 gem "jbuilder", "~> 2.5"
 gem "puma", "~> 3.7"

@@ -1,0 +1,7 @@
+<% if @warehouse.errors.any? %>
+  <% @warehouse.errors.full_messages.each do |message| %>
+    <div class="alert">
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>

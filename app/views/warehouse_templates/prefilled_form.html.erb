@@ -1,0 +1,67 @@
+<h1>
+  Edit warehouse #<%= @warehouse.id %>
+</h1>
+
+<hr>
+
+<%= render("warehouse_templates/validation_failures.html.erb") %>
+
+<form action="/update_warehouse_record/<%= @warehouse.id %>" method="post">
+
+  <div>
+    <label for="owner_id">
+    </label>
+
+    <input type="hidden" id="owner_id" name="owner_id" value="<%= @warehouse.owner_id %>">
+  </div>
+
+  <div>
+    <label for="location">
+      Location
+    </label>
+
+    <input type="text" id="location" name="location" value="<%= @warehouse.location %>">
+  </div>
+
+  <div>
+    <label for="neighborhood">
+      Neighborhood
+    </label>
+
+    <input type="text" id="neighborhood" name="neighborhood" value="<%= @warehouse.neighborhood %>">
+  </div>
+
+  <div>
+    <label for="max_length_sqft">
+      Max length sqft
+    </label>
+
+    <input type="text" id="max_length_sqft" name="max_length_sqft" value="<%= @warehouse.max_length_sqft %>">
+  </div>
+
+  <div>
+    <label for="max_width_sqft">
+      Max width sqft
+    </label>
+
+    <input type="text" id="max_width_sqft" name="max_width_sqft" value="<%= @warehouse.max_width_sqft %>">
+  </div>
+
+  <div>
+    <label for="name">
+      Name
+    </label>
+
+    <input type="text" id="name" name="name" value="<%= @warehouse.name %>">
+  </div>
+
+  <button>
+    Update warehouse
+  </button>
+</form>
+
+<hr>
+
+<a href="/warehouses">
+  Go back
+</a>

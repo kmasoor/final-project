@@ -1,0 +1,68 @@
+<h1>
+  Contract #<%= @contract.id %> details
+</h1>
+
+<div>
+  <div>
+    <a href="/">
+      Go back
+    </a>
+  </div>
+
+
+  <% if @contract.buyer_id == current_user.id %>
+
+
+        <div>
+          <a href="/delete_contract/<%= @contract.id %>">
+      Delete contract
+    </a>
+        </div>
+    
+  <% end %>
+
+
+
+</div>
+
+<dl>
+  <dt>
+    Buyer
+  </dt>
+  <dd>
+    <%= User.where(:id => @contract.buyer_id).first.username %>
+  </dd>
+
+  <dt>
+    Seller
+  </dt>
+  <dd>
+    <%= User.where(:id => @contract.seller_id).first.username %>
+  </dd>
+
+  <dt>
+    Price
+  </dt>
+  <dd>
+    <%= number_to_currency(@contract.price) %>
+  </dd>
+
+  <dt>
+    Days
+  </dt>
+  <dd>
+    <%= @contract.days %>
+  </dd>
+
+  <dt>
+    Length used
+  </dt>
+  <dd>
+    <%= @contract.length_sqft %>
+  </dd>
+  
+  <dt>Width used</dt>
+  <dd><%= @contract.width_sqft %></dd>
+
+</dl>
+
